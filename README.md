@@ -206,15 +206,12 @@ reader cites; **Site** is what the website calls the same image.
 
 The columns disagree because each document orders figures for its own reader:
 the file index is production order, the paper puts body figures first and holds
-the rest for the appendix, and the site follows its argument. No number is baked
-into the images, since a title reading "Figure 7" would be wrong in two of the
-three places the same PNG appears; the number comes from the caption around it.
+the rest for the appendix, and the site follows its argument. 
 
 Every figure carries a self-contained caption naming its source and sample size,
 so it can be read without the surrounding text (as required). Titles state 
 what the figure shows, including when the answer is that the sample 
 cannot resolve it (f08).
-
 
 ---
 
