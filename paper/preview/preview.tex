@@ -1,58 +1,23 @@
-\documentclass[9pt,twoside]{pnas-new}
-% Use the lineno option to display guide line numbers if required.
+\documentclass[10pt]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{graphicx,booktabs,amsmath,amssymb,url,parskip,float}
+\usepackage[hidelinks]{hyperref}
 
-\articletype{Social Sciences}%%%% Article topic/classification
+% PNAS-class macros that plain article does not define. Declared here so the
+% preview compiles against exactly the same body text as the real manuscript.
+\newcommand{\numberthis}{\refstepcounter{equation}\tag{\theequation}}
+\newcommand{\addtabletext}[1]{\par\vspace{4pt}\footnotesize #1\par}
+\newcommand{\dropcap}[1]{#1}
 
-\templatetype{pnasmathematics} % Choose template
-% {pnasresearcharticle} = Template for a two-column research article
-% {pnasmathematics} = Template for a one-column mathematics article
-% {pnasinvited} = Template for a PNAS invited submission
-%\onecolumn
+\title{\vspace{-2.2em}Where the neurologists are not: measuring the gap between neurological disease burden and the capacity to treat it\\[0.4em]
+\large PREVIEW BUILD --- paste into the PNAS Overleaf template for the real layout}
+\author{Alanna Polyak \\ \small Department of Quantitative Social Science, Dartmouth College}
+\date{\today}
+\begin{document}\maketitle
 
-\usepackage{booktabs}
-\usepackage{float}
+\begin{quote}\small\textbf{Significance statement.} Specialists per country is the statistic normally used to describe where medical capacity sits, and it answers the wrong question. Combining three World Health Organization sources across 52 countries, this study shows that the countries holding the largest share of the world's stroke burden hold the smallest share of its neurologists, by a factor of roughly thirty-four. It then shows that national counts overstate what most residents can reach, because the poorer a country is, the more completely its specialists concentrate in the capital. In low-income countries the specialist density facing a rural resident is not merely low but exactly zero, which makes the usual language of ratios inapplicable.\end{quote}
 
-\begin{document}
-
-\title{Where the neurologists are not: measuring the gap between neurological disease burden and the capacity to treat it}
-
-% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
-\author[a,1]{Alanna Polyak}
-
-\affil[a]{Department of Quantitative Social Science, Dartmouth College, Hanover, NH 03755}
-
-% Please give the surname of the lead author for the running footer
-\leadauthor{Polyak}
-
-% Please add a significance statement to explain the relevance of your work
-\significancestatement{Specialists per country is the statistic normally used to describe where medical capacity sits, and it answers the wrong question. Combining three World Health Organization sources across 52 countries, this study shows that the countries holding the largest share of the world's stroke burden hold the smallest share of its neurologists, by a factor of roughly thirty-four. It then shows that national counts overstate what most residents can reach, because the poorer a country is, the more completely its specialists concentrate in the capital. In low-income countries the specialist density facing a rural resident is not merely low but exactly zero, which makes the usual language of ratios inapplicable.}
-
-% Please include corresponding author, author contribution and author declaration information
-\authorcontributions{A.P. designed the study, wrote all analysis code, performed the analysis, and wrote the paper.}
-\authordeclaration{The author declares no competing interests.}
-\correspondingauthor{\textsuperscript{1}To whom correspondence should be addressed. E-mail: alanna.g.polyak.28\@dartmouth.edu}
-
-% At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
-\keywords{health workforce $|$ neurological disease $|$ global health equity $|$ rural access $|$ inequality measurement}
-
-\begin{abstract}
-Neurological disease burden and the workforce trained to treat it are not distributed alike. Combining the WHO/WFN Neurology Atlas, the WHO Global Dementia Observatory and WHO Global Health Estimates across 52 countries, I measure that mismatch three ways. First, a scale-free burden-to-capacity share ratio places the median low- or middle-income country at 13.1, meaning it carries thirteen times as large a share of the sample's stroke burden as of its neurologists, against 0.38 for the median high-income country: a factor of 34. Two countries report zero neurologists and cannot be placed on the scale at all. Second, capacity is distributed across countries with a Gini coefficient of 0.61 (95\% bootstrap CI 0.43--0.73), the poorer half of countries holding 6\% of the sampled workforce. Third, national density overstates access wherever specialists remain urban: an Urban Concentration Index falls from 0.95 in low-income countries to 0.52 in high-income ones, and the effective density facing a rural resident of a low-income country is exactly zero, because no low-income country in the Atlas reports a neurologist practicing rurally. Because country-level regressions on 19 to 35 observations are underpowered, all inference is conducted on binned groups. A bounding exercise shows burden would have to be overstated by a factor of 34 in low- and middle-income countries for the central result to reverse. All analysis is descriptive; no causal effect is estimated.
-\end{abstract}
-
-\dates{This manuscript was compiled on \today}
-\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
-
-\maketitle
-\thispagestyle{firststyle}
-\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
-
-
-\Firstpage
-
-%The \Firstpage command is used to format the first page text column size. The same size will be maintained for subsequent paragraph until the \Endparasplit or \Parasplit command is encountered.
-
-
-% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+\dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{N}eurological disorders are among the largest contributors to global
 disability \cite{feigin2020}, and the workforce able to diagnose and manage them
 is among the most unevenly distributed of any medical specialty. Demand is also
@@ -86,11 +51,11 @@ country with functioning services and one with none are indistinguishable in the
 published tables. This paper extends that literature in three ways: it joins
 capacity to a burden measure at the country level, it reports a distributional
 statistic rather than a central tendency, and it separates how much capacity
-exists from where inside a country that capacity sits.\Endparasplit
+exists from where inside a country that capacity sits.
 
-%The \Endparasplit command is used to end the formatting of the text column size that was set by the \Firstpage command. This will restore the default column size for the subsequent text.
+%The  command is used to end the formatting of the text column size that was set by the \Firstpage command. This will restore the default column size for the subsequent text.
 %
-%The \Parasplit command should be used if the page ends in the middle of a paragraph, allowing the column formatting to continue seamlessly on the next page.
+%The  command should be used if the page ends in the middle of a paragraph, allowing the column formatting to continue seamlessly on the next page.
 
 \section*{Data}
 
@@ -651,19 +616,6 @@ Analyses used Python 3.10 with pandas, NumPy, SciPy, statsmodels and Matplotlib;
 versions are pinned in \texttt{requirements.txt}. Random seeds are fixed
 throughout.
 
-\dataavail{Every figure and table in this paper, and the eleven figures and seven
-tables not shown, are regenerated from the committed data by \texttt{bash
-run\_all.sh}. The two scripts that rebuild \texttt{data/raw/} from restricted
-sources are excluded from that command and print an explanation rather than
-failing when their inputs are absent.}
-
-\acknow{I thank Prof.\ Herbert Chang for guidance on the analysis design and for
-the suggestion to bin countries rather than fit underpowered country-level
-regressions.}
-
-\showacknow % Display the acknowledgements section
-
-% Bibliography
+\bibliographystyle{plain}
 \bibliography{qss20}
-
 \end{document}
