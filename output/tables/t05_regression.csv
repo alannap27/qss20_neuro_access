@@ -1,0 +1,4 @@
+term,beta_normal_equations,beta_gradient_descent,standard_error,t_statistic
+intercept,0.6747,0.6747,0.1185,5.695
+log capacity (standardized),-2.0715,-2.0715,0.2131,-9.723
+high income (standardized),0.0275,0.0275,0.2131,0.129

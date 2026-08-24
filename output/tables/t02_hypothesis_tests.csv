@@ -1,0 +1,7 @@
+comparison,test,statistic,p_value,detail
+"Neurologist density, high vs low/middle income",Welch t-test,t = 4.29,p = 0.0031,n = 8 vs 7; means 5.62 vs 0.51
+"Neurologist density, high vs low/middle income",Mann-Whitney U,U = 56.0,p = 0.0003,medians 4.58 vs 0.41
+"Neurologist density, high vs low/middle income",Permutation test,diff = 5.11,p = 0.0003,20 000 label shuffles; makes no distributional assumption
+Service reach across three income bins,One-way ANOVA,F = 5.74,p = 0.0074,High-income: mean 2.73 (n = 22); Low / lower-middle: mean 1.75 (n = 4); Upper-middle: mean 2.44 (n = 9)
+Service reach across three income bins,Kruskal-Wallis,H = 9.44,p = 0.0089,rank-based check on the ANOVA
+Service reach by income bin,Chi-square,"chi2 = 11.81, df = 4",p = 0.0188,expected count below 5 in 6 of 9 cells

@@ -1,0 +1,5 @@
+income_group,n_total,total_workforce_per100k,pct_countries_capital,pct_countries_other_urban,pct_countries_rural,uci,rural_access_deficit,effective_rural_density
+Low-income,23,0.1,95,48,0,0.95,95,0.0
+Lower-middle-income,29,1.4,100,76,17,0.83,83,0.23799999999999996
+Upper-middle-income,32,3.1,97,87,19,0.78,78,0.589
+High-income,30,7.1,97,82,45,0.52,52,3.195

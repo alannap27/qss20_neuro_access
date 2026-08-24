@@ -1,0 +1,22 @@
+  wrote output/figures/f11_paired_workforce.png
+  wrote output/figures/f12_paired_rural_access.png
+         construct                     instrument  n_countries                                    unit                                  finding                                               limitation
+Workforce gradient WHO Neurology Atlas, aggregate          114                 median per income group          0.1 to 7.1 per 100 000, 71-fold cannot identify countries and cannot be linked to burden
+Workforce gradient         WHO GDO, country level           15                   one value per country          median 0.09 to 4.58 per 100 000             small sample; counts adult neurologists only
+      Rural access WHO Neurology Atlas, aggregate          114 % of countries reporting rural practice           45% to 0% across income groups                          records presence, not intensity
+      Rural access         WHO GDO, country level           35             ordered service-reach level 77% to 0% of countries reach rural areas        dementia services specifically, not all neurology
+  wrote output/tables/t08_paired_instruments.csv
+
+DHS manifest: 3018 datasets, 106 countries, 443 surveys, 62 with GPS
+  wrote output/figures/f13_dhs_coverage.png
+                             metric  value
+               Datasets in manifest 3018.0
+                 Distinct countries  106.0
+                   Distinct surveys  443.0
+           Countries with GPS files   62.0
+     Countries with one survey only   19.0
+Countries with five or more surveys   36.0
+         Median surveys per country    2.5
+  wrote output/tables/t09_dhs_coverage.csv
+
+figures 11 to 13 written

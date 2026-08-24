@@ -1,0 +1,40 @@
+                                       measure  n
+                            Countries in panel 52
+      With neurologist density (WHO GDO, 2017) 19
+      With service-reach level (WHO GDO, 2017) 47
+         With stroke DALY rate (WHO GHE, 2004) 52
+With World Bank income group (WHO Atlas, 2017) 39
+               RQ1 sample: capacity and burden 19
+    RQ3 sample: service reach and income group 35
+  wrote output/tables/t01_analysis_sample.csv
+
+RQ1: countries on the ratio scale: 17
+zero-capacity countries: ['FJI', 'SWZ'] with stroke DALY rates [1536, 994]
+median ratio  high-income 0.38   low/middle 13.12   factor 34.3
+  wrote output/figures/f01_alignment_ratio.png
+
+RQ2: Gini 0.6073 across 19 countries
+independent check by Lorenz integration: 0.6073 (difference 1.11e-16)
+within High-income    (n = 8): Gini 0.269
+within Low / middle   (n = 7): Gini 0.493
+focal contrast: CHE 13.10 vs MMR 0.07 = 187-fold
+  wrote output/figures/f02_lorenz_gini.png
+
+RQ3: 35 countries with both service reach and an income group
+accessibility_level  Capital only  Capital + main cities  Reaches rural areas
+income_bin3                                                                  
+High-income                     1                      4                   17
+Low / lower-middle              1                      3                    0
+Upper-middle                    0                      5                    4
+
+                                    comparison             test            statistic    p_value                                                                                                  detail
+Neurologist density, high vs low/middle income     Welch t-test             t = 4.29 p = 0.0031                                                                          n = 8 vs 7; means 5.62 vs 0.51
+Neurologist density, high vs low/middle income   Mann-Whitney U             U = 56.0 p = 0.0003                                                                                    medians 4.58 vs 0.41
+Neurologist density, high vs low/middle income Permutation test          diff = 5.11 p = 0.0003                                               20 000 label shuffles; makes no distributional assumption
+        Service reach across three income bins    One-way ANOVA             F = 5.74 p = 0.0074 High-income: mean 2.73 (n = 22); Low / lower-middle: mean 1.75 (n = 4); Upper-middle: mean 2.44 (n = 9)
+        Service reach across three income bins   Kruskal-Wallis             H = 9.44 p = 0.0089                                                                           rank-based check on the ANOVA
+                   Service reach by income bin       Chi-square chi2 = 11.81, df = 4 p = 0.0188                                                                  expected count below 5 in 6 of 9 cells
+  wrote output/tables/t02_hypothesis_tests.csv
+  wrote output/figures/f03_service_reach_by_income.png
+
+figures 1 to 3 written

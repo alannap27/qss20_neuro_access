@@ -1,0 +1,38 @@
+/sessions/dreamy-laughing-thompson/.local/lib/python3.10/site-packages/scipy/stats/_axis_nan_policy.py:430: UserWarning: `kurtosistest` p-value may be inaccurate with fewer than 20 observations; only n=13 observations were given.
+  return hypotest_fun_in(*args, **kwds)
+regression sample: 17 countries
+
+closed form (normal equations): [ 0.6747 -2.0715  0.0275]
+gradient descent, 5000 steps: [ 0.6747 -2.0715  0.0275]
+maximum absolute difference: 6.66e-15
+R squared: 0.9553   MSE: 0.1965
+statsmodels: [ 0.6747 -2.0715  0.0275]
+agreement with closed form: 4.44e-16
+
+                       term  beta_normal_equations  beta_gradient_descent  standard_error  t_statistic
+                  intercept                 0.6747                 0.6747          0.1185        5.695
+log capacity (standardized)                -2.0715                -2.0715          0.2131       -9.723
+ high income (standardized)                 0.0275                 0.0275          0.2131        0.129
+  wrote output/tables/t05_regression.csv
+  wrote output/figures/f07_regression_solvers.png
+
+service-reach sample: 35 countries
+countries with BOTH a ratio and a service-reach level: 13
+
+==================================================================================
+                     coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------
+const              0.3094      0.271      1.142      0.283      -0.303       0.922
+z_log_capacity    -2.1632      0.235     -9.220      0.000      -2.694      -1.632
+rural              0.0141      0.338      0.042      0.968      -0.750       0.778
+interaction       -0.0039      0.341     -0.011      0.991      -0.775       0.767
+==================================================================================
+
+                               comparison                test     statistic    p_value                                                                                   detail
+               Rural reach on high income Logistic regression beta = +2.035 p = 0.0098                                                                   odds ratio 7.6; n = 35
+log ratio on log capacity x reaches rural     OLS interaction beta = -0.004 p = 0.9911                                                   n = 13; main effect of capacity -2.163
+         Service reach across income bins       One-way ANOVA      F = 5.74 p = 0.0074 High-income: 2.73 (n = 22); Low / lower-middle: 1.75 (n = 4); Upper-middle: 2.44 (n = 9)
+  wrote output/tables/t06_interaction_tests.csv
+  wrote output/figures/f08_interactions.png
+
+figures 7 and 8 written

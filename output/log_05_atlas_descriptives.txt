@@ -1,0 +1,10 @@
+                       cadre  low_income_per100k  high_income_per100k  absolute_gap  ratio_high_to_low
+Total neurological workforce               0.100                 7.10         7.000               71.0
+          Adult neurologists               0.030                 4.75         4.720              158.3
+               Neurosurgeons               0.020                 1.24         1.220               62.0
+          Child neurologists               0.002                 0.39         0.388              195.0
+  wrote output/tables/t03_atlas_gradients.csv
+  wrote output/figures/f04_atlas_workforce_by_income.png
+  wrote output/figures/f05_atlas_where_neurologists_practice.png
+
+figures 4 and 5 written

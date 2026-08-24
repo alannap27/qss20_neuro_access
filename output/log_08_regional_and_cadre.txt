@@ -1,0 +1,13 @@
+  wrote output/figures/f09_regional_gradient.png
+  wrote output/figures/f10_cadre_gradient.png
+region_code                       region  atlas_total_per100k  atlas_n  atlas_adult_neuro_per100k  gdo_n  gdo_median  gdo_min  gdo_max
+        AFR               African Region                  0.1       32                      0.043      3        0.14     0.00     0.23
+        AMR       Region of the Americas                  2.3       23                      0.700      3        0.69     0.61     4.79
+        EMR Eastern Mediterranean Region                  1.5       14                      0.800      3        1.58     0.41     1.78
+        EUR              European Region                  9.0       27                      6.600      5        6.01     3.80    13.10
+       SEAR       South-East Asia Region                  0.3       10                      0.100      2        0.08     0.07     0.09
+        WPR       Western Pacific Region                  3.7        8                      1.200      3        2.10     0.00     4.38
+     Global                       Global                  3.1      114                      0.430      0         NaN      NaN      NaN
+  wrote output/tables/t07_regional_comparison.csv
+
+figures 9 and 10 written

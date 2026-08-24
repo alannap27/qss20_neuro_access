@@ -1,0 +1,16 @@
+neurologist records: 21
+usable numeric values: 19
+
+accessibility records: 61
+usable ordered values: 47
+
+burden records: 62   crosswalk records: 45
+
+outer join of capacity and accessibility: 52 rows
+merge [burden]: 52 rows in -> 52 rows out (left join on iso3)
+merge [crosswalk]: 52 rows in -> 52 rows out (left join on iso3)
+
+country_panel.csv: 52 rows
+with capacity: 19
+with reach: 47
+with income: 39

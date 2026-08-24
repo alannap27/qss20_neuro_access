@@ -1,0 +1,15 @@
+Urban-rural indices by income group
+       income_group  total_workforce_per100k  pct_countries_capital  pct_countries_rural  uci  effective_rural_density
+         Low-income                      0.1                     95                    0 0.95                    0.000
+Lower-middle-income                      1.4                    100                   17 0.83                    0.238
+Upper-middle-income                      3.1                     97                   19 0.78                    0.589
+        High-income                      7.1                     97                   45 0.52                    3.195
+  wrote output/tables/t04_urban_rural_indices.csv
+
+UCI: 0.95 in low-income vs 0.52 in high-income
+national density ratio, high over low: 71-fold
+effective rural density ratio: undefined, the low-income denominator is
+exactly zero. The gap is not a ratio because the quantity is absent, not small.
+  wrote output/figures/f06_urban_rural_indices.png
+
+figure 6 written

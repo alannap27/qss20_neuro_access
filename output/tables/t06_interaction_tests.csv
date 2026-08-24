@@ -1,0 +1,4 @@
+comparison,test,statistic,p_value,detail
+Rural reach on high income,Logistic regression,beta = +2.035,p = 0.0098,odds ratio 7.6; n = 35
+log ratio on log capacity x reaches rural,OLS interaction,beta = -0.004,p = 0.9911,n = 13; main effect of capacity -2.163
+Service reach across income bins,One-way ANOVA,F = 5.74,p = 0.0074,High-income: 2.73 (n = 22); Low / lower-middle: 1.75 (n = 4); Upper-middle: 2.44 (n = 9)

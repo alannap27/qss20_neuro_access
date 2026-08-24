@@ -1,0 +1,8 @@
+metric,value
+Datasets in manifest,3018.0
+Distinct countries,106.0
+Distinct surveys,443.0
+Countries with GPS files,62.0
+Countries with one survey only,19.0
+Countries with five or more surveys,36.0
+Median surveys per country,2.5
