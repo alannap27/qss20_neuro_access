@@ -1,0 +1,9 @@
+# QSS 20 final project: Python dependencies
+# pip install -r requirements.txt
+
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.6
+scipy>=1.9
+statsmodels>=0.14
+pdfplumber>=0.10

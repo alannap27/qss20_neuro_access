@@ -1,0 +1,53 @@
+iso3,who_region,neurologists_per100k,accessibility_level,accessibility_raw,beyond_capital,reaches_rural,stroke_dalys_per100k_agestd_2004,country,wb_income_group,income_bin3,income_bin2,high_income
+AUS,WPR,2.1,3.0,"Capital, main cities and rural areas",1.0,1.0,228,Australia,High-income,High-income,High-income,1
+AUT,,,2.0,Capital and main cities only,1.0,0.0,242,Austria,High-income,High-income,High-income,1
+BEL,,,3.0,"Capital, main cities and rural areas",1.0,1.0,350,Belgium,High-income,High-income,High-income,1
+BGD,SEAR,0.09,2.0,Capital and main cities only,1.0,0.0,864,Bangladesh,Lower-middle income,Low / lower-middle,Low / middle,0
+BRA,,,2.0,Capital and main cities only,1.0,0.0,836,Brazil,Upper-middle income,Upper-middle,Low / middle,0
+BRN,,,2.0,Capital and main cities only,1.0,0.0,488,,,,,0
+CHE,EUR,13.1,3.0,"Capital, main cities and rural areas",1.0,1.0,184,Switzerland,High-income,High-income,High-income,1
+CHL,AMR,4.79,2.0,Capital and main cities only,1.0,0.0,396,Chile,High-income,High-income,High-income,1
+CHN,,,2.0,Capital and main cities only,1.0,0.0,1072,China,Upper-middle income,Upper-middle,Low / middle,0
+COK,,,3.0,"Capital, main cities and rural areas",1.0,1.0,955,,,,,0
+CRI,AMR,0.61,,,,,247,Costa Rica,Upper-middle income,Upper-middle,Low / middle,0
+DEU,,,3.0,"Capital, main cities and rural areas",1.0,1.0,289,Germany,High-income,High-income,High-income,1
+DNK,,,3.0,"Capital, main cities and rural areas",1.0,1.0,358,,,,,0
+DOM,AMR,0.69,,,,,1091,Dominican Republic,Upper-middle income,Upper-middle,Low / middle,0
+EST,,,3.0,"Capital, main cities and rural areas",1.0,1.0,719,Estonia,High-income,High-income,High-income,1
+FIN,,,3.0,"Capital, main cities and rural areas",1.0,1.0,394,,,,,0
+FJI,WPR,0.0,3.0,"Capital, main cities and rural areas",1.0,1.0,1536,,,,,0
+FRA,EUR,3.8,3.0,"Capital, main cities and rural areas",1.0,1.0,242,France,High-income,High-income,High-income,1
+GRC,,,2.0,Capital and main cities only,1.0,0.0,522,Greece,High-income,High-income,High-income,1
+GUY,,,2.0,Capital and main cities only,1.0,0.0,1403,Guyana,Lower-middle income,Low / lower-middle,Low / middle,0
+HUN,EUR,6.6,3.0,"Capital, main cities and rural areas",1.0,1.0,702,Hungary,High-income,High-income,High-income,1
+IRL,,,3.0,"Capital, main cities and rural areas",1.0,1.0,280,,,,,0
+IRN,,,3.0,"Capital, main cities and rural areas",1.0,1.0,764,Iran (Islamic Republic of),Upper-middle income,Upper-middle,Low / middle,0
+ISR,,,3.0,"Capital, main cities and rural areas",1.0,1.0,211,,,,,0
+ITA,,,3.0,"Capital, main cities and rural areas",1.0,1.0,287,Italy,High-income,High-income,High-income,1
+JOR,EMR,0.41,2.0,Capital and main cities only,1.0,0.0,1051,Jordan,Upper-middle income,Upper-middle,Low / middle,0
+JPN,WPR,4.38,3.0,"Capital, main cities and rural areas",1.0,1.0,425,Japan,High-income,High-income,High-income,1
+KOR,,,3.0,"Capital, main cities and rural areas",1.0,1.0,625,Republic of Korea,High-income,High-income,High-income,1
+LBN,,,3.0,"Capital, main cities and rural areas",1.0,1.0,642,Lebanon,Upper-middle income,Upper-middle,Low / middle,0
+LTU,,,3.0,"Capital, main cities and rural areas",1.0,1.0,645,Lithuania,High-income,High-income,High-income,1
+MAR,,,2.0,Capital and main cities only,1.0,0.0,502,Morocco,Lower-middle income,Low / lower-middle,Low / middle,0
+MLT,,,3.0,"Capital, main cities and rural areas",1.0,1.0,356,,,,,0
+MMR,SEAR,0.07,,,,,953,Myanmar,Lower-middle income,Low / lower-middle,Low / middle,0
+MUS,AFR,0.23,3.0,"Capital, main cities and rural areas",1.0,1.0,1065,,,,,0
+MYS,,,3.0,"Capital, main cities and rural areas",1.0,1.0,603,Malaysia,Upper-middle income,Upper-middle,Low / middle,0
+NLD,EUR,6.01,3.0,"Capital, main cities and rural areas",1.0,1.0,291,Netherlands,High-income,High-income,High-income,1
+NOR,,,3.0,"Capital, main cities and rural areas",1.0,1.0,283,Norway,High-income,High-income,High-income,1
+OMN,,,1.0,Capital city only,0.0,0.0,338,Oman,High-income,High-income,High-income,1
+POL,,,3.0,"Capital, main cities and rural areas",1.0,1.0,616,Poland,High-income,High-income,High-income,1
+QAT,EMR,1.78,2.0,Capital and main cities only,1.0,0.0,254,,,,,0
+SGP,,,3.0,"Capital, main cities and rural areas",1.0,1.0,283,Singapore,High-income,High-income,High-income,1
+SVN,,,2.0,Capital and main cities only,1.0,0.0,493,Slovenia,High-income,High-income,High-income,1
+SWE,EUR,4.2,3.0,"Capital, main cities and rural areas",1.0,1.0,281,Sweden,High-income,High-income,High-income,1
+SWZ,AFR,0.0,,,,,994,,,,,0
+TGO,AFR,0.14,1.0,Capital city only,0.0,0.0,1201,Togo,Low-income,Low / lower-middle,Low / middle,0
+THA,,,2.0,Capital and main cities only,1.0,0.0,740,Thailand,Upper-middle income,Upper-middle,Low / middle,0
+TTO,,,3.0,"Capital, main cities and rural areas",1.0,1.0,873,,,,,0
+TUN,EMR,1.58,,,,,411,Tunisia,Upper-middle income,Upper-middle,Low / middle,0
+TUR,,,3.0,"Capital, main cities and rural areas",1.0,1.0,1232,Turkey,Upper-middle income,Upper-middle,Low / middle,0
+USA,,,3.0,"Capital, main cities and rural areas",1.0,1.0,327,United States of America,High-income,High-income,High-income,1
+VNM,,,3.0,"Capital, main cities and rural areas",1.0,1.0,728,,,,,0
+ZAF,,,2.0,Capital and main cities only,1.0,0.0,1284,South Africa,Upper-middle income,Upper-middle,Low / middle,0

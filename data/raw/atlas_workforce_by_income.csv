@@ -1,0 +1,6 @@
+income_group,total_workforce_per100k,n_total,adult_neurologists_per100k,n_adult,neurosurgeons_per100k,n_neurosurg,child_neurologists_per100k,n_child,pct_countries_capital,pct_countries_other_urban,pct_countries_rural,n_geo
+Low-income,0.1,23,0.03,23,0.02,23,0.002,18,95,48,0,21
+Lower-middle-income,1.4,29,0.13,29,0.11,28,0.02,27,100,76,17,29
+Upper-middle-income,3.1,32,1.09,32,0.6,28,0.1,25,97,87,19,30
+High-income,7.1,30,4.75,30,1.24,29,0.39,23,97,82,45,32
+Global,3.1,114,0.43,114,0.34,108,0.05,93,97,75,23,114
