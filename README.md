@@ -181,30 +181,40 @@ account. The derived DHS inventory contains no survey responses and is included.
    service-reach level; the interaction term is null (*P* = 0.99).
 
 ---
-
 ## The full figure set
 
-| | Figure | Script |
-|---|---|---|
-| f01 | Burden-to-capacity share ratio by country | 04 |
-| f02 | Lorenz curve and Gini of neurologist density | 04 |
-| f03 | Dementia service reach by income group | 04 |
-| f04 | Atlas workforce density by income group | 05 |
-| f05 | Where neurologists practice | 05 |
-| f06 | Urban concentration and effective rural density | 06 |
-| f07 | Normal equations against gradient descent | 07 |
-| f08 | Capacity by reach, and reach by income | 07 |
-| f09 | Regional gradient in capacity | 08 |
-| f10 | Gradient by clinical cadre | 08 |
-| f11 | Paired workforce comparison | 09 |
-| f12 | Paired rural access comparison | 09 |
-| f13 | DHS survey coverage | 09 |
-| f14 | Bounding exercise and leave-one-out | 10 |
+All fourteen are in the paper: three in the body, eleven in Appendix A.
+**Paper** is the number LaTeX assigns by order of appearance, which is what a
+reader cites; **Site** is what the website calls the same image.
+
+| | Figure | Script | Paper | Site |
+|---|---|---|---|---|
+| f01 | Burden-to-capacity share ratio by country | 04 | Fig. 1 | Figure 1 |
+| f02 | Lorenz curve and Gini of neurologist density | 04 | Fig. 2 | Figure 2 |
+| f03 | Dementia service reach by income group | 04 | Fig. 4 | gallery |
+| f04 | Atlas workforce density by income group | 05 | Fig. 5 | gallery |
+| f05 | Where neurologists practice | 05 | Fig. 6 | gallery |
+| f06 | Urban concentration and effective rural density | 06 | Fig. 3 | Figure 3 |
+| f07 | Normal equations against gradient descent | 07 | Fig. 12 | gallery |
+| f08 | Capacity by reach, and reach by income | 07 | Fig. 13 | Figure 4 |
+| f09 | Regional gradient in capacity | 08 | Fig. 8 | gallery |
+| f10 | Gradient by clinical cadre | 08 | Fig. 7 | gallery |
+| f11 | Paired workforce comparison | 09 | Fig. 9 | gallery |
+| f12 | Paired rural access comparison | 09 | Fig. 10 | gallery |
+| f13 | DHS survey coverage | 09 | Fig. 11 | gallery |
+| f14 | Bounding exercise and leave-one-out | 10 | Fig. 14 | gallery |
+
+The columns disagree because each document orders figures for its own reader:
+the file index is production order, the paper puts body figures first and holds
+the rest for the appendix, and the site follows its argument. No number is baked
+into the images, since a title reading "Figure 7" would be wrong in two of the
+three places the same PNG appears; the number comes from the caption around it.
 
 Every figure carries a self-contained caption naming its source and sample size,
 so it can be read without the surrounding text (as required). Titles state 
 what the figure shows, including when the answer is that the sample 
 cannot resolve it (f08).
+
 
 ---
 
