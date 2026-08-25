@@ -220,3 +220,4 @@ cannot resolve it (f08).
 - `paper/qss20_paper.tex` — the manuscript, written against the PNAS
   `pnasmathematics` template and 6 pages maximum. 
 - Project website source lives in a different `website/` folder, not in this repo.
+- The link for the website is https://care-capacity-site.vercel.app/
