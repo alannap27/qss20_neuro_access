@@ -90,7 +90,7 @@ severely limited in low-income countries \cite{atlas2017}. Feigin and colleagues
 made a case for translating burden evidence into workforce policy
 \cite{feigin2020}, and comparative health-system statistics show specialist
 supply concentrated in high-income settings, with rural residents facing
-additional barriers even inside wealthy countries \cite{oecd2023}.
+additional barriers even inside wealthy countries \cite{oecd2023,anand2004}.
 
 What the Atlas does not do, and what this analysis adds, is link capacity to
 need. The Atlas reports medians within income groups and WHO regions,
@@ -208,7 +208,7 @@ rural resident could reach anyone at all.
 
 Inequality is measured by the \textbf{Gini coefficient} of neurologist density,
 computed by the sorted-index formula in \texttt{utils.py} and
-independently by trapezoidal integration under the Lorenz curve (line 186). The
+independently by trapezoidal integration under the Lorenz curve \cite{lorenz1905} (line 186). The
 two agree to $1.1\times10^{-16}$, which is a check on the implementation.
 
 \paragraph{Inference, and why no country-level regression is reported} This is
@@ -219,7 +219,7 @@ both capacity and measured burden. No causal effect is estimated or implied.
 With 19 to 35 observations, a fitted country-level slope would be badly
 underpowered, so no slope is reported as a main result. Countries are binned
 by World Bank income group and the groups compared directly, with a Welch
-$t$-test, a Mann-Whitney $U$, a 20{,}000-draw permutation test that assumes
+$t$-test, a Mann-Whitney $U$, a 20{,}000-draw permutation test \cite{good2005} that assumes
 nothing about distributional shape, a one-way ANOVA and Kruskal-Wallis across
 three bins, a chi-square on the reach-by-income contingency table, and a
 logistic regression of rural reach on high income. A regression is fitted
@@ -451,9 +451,9 @@ statistical power, not evidence that no interaction exists.
 
 \subsection*{Robustness}
 
-Three checks: A 5{,}000-draw bootstrap gives the Gini interval quoted above.
+Three checks: A 5{,}000-draw bootstrap \cite{efron1993} gives the Gini interval quoted above.
 Leave-one-out moves the Gini by at most 0.06 for any single country. A bounding
-exercise asks how much measurement error would be needed to overturn the central
+exercise \cite{vanderweele2017} asks how much measurement error would be needed to overturn the central
 result: burden in low- and middle-income countries would have to be
 overstated by a factor of 34, or their capacity understated by the same
 factor, for the two median ratios to level. Measurement error of that magnitude
@@ -562,6 +562,7 @@ with the same self-contained captions they carry in the repository.
 \label{fig:a-cadre}
 \end{minipage}
 \end{figure}
+\newpage
 
 \subsection*{A.2 Geography rather than economics}\leavevmode\par\nobreak
 \needspace{6\baselineskip}
@@ -861,5 +862,7 @@ bottleneck from writing code to verifying that the code answered the intended
 question, and the second is the harder job; thus, after these initial asks failed, barring a few errors (as mentioned above), AI assistance was minimized.
 
 \paragraph{Website} AI was lastly used to develop the source code for the launched website \url{https://vercel.com/alanna2/care-capacity-site} with a descriptive prompt for the overview, most aspects were left blank to insert the graphs/information by hand.
+
+\paragraph{Representative transcript} Abridged versions are included in the directory as mentioned above; however, one full representative transcript is also available in the GitHub repository.
 
 \end{document}
