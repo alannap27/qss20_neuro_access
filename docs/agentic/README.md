@@ -26,7 +26,7 @@ docs/agentic/
 
 ## Scope
 
-The session ran from 4 August to 24 August 2026 across several sittings and some
+The session ran from August 4th, 2026 to August 24th, 2026 across several sittings and some
 would not download. The excerpts here are the exchanges that changed what the
 analysis does, which is what the reflection in the paper is about. The large
 remainder is routine: checking the comments structure, correcting a column
