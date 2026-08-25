@@ -1,11 +1,11 @@
-# AI assistant transcripts
+# AI transcripts
 
 The Agentic Analysis section of the paper refers to this folder.
 
 ## What is here
 
 Four transcripts, one for each of the longer forms of explicit the paper cites. 
-Each is an edited excerpt from the session logs: prompts and the assistant's replies 
+Each is an edited excerpt from the session logs: prompts and the AI's replies 
 are reproduced as written, while tool output, file diffs, and long code
 blocks are abridged to the lines that matter, with cuts marked `[...]`.
 
