@@ -10,12 +10,12 @@ Edited excerpt from the session log, abridged as described in the README.
 
 ## The proposal I rejected
 
-Asked how to quantify the alignment between burden and capacity, the assistant
+Asked how to quantify the alignment between burden and capacity, the AI
 proposed a country-level regression of the log alignment ratio on neurologist
 density and an income indicator, reporting the slope with a standard error as
 the paper's headline result.
 
-> **Assistant:** The cleanest headline is the slope on log capacity: each
+> **AI:** The cleanest headline is the slope on log capacity: each
 > one-unit increase in standardized log density is associated with a −2.07
 > change in log ratio, SE 0.21, t = −9.7. That gives you a single number with a
 > confidence interval to lead the Results section.
@@ -44,10 +44,10 @@ I then did this by hand to fulfill my own ask.
 
 ## The proposal I accepted
 
-The assistant suggested implementing the Gini twice by different routes and
+The AI suggested implementing the Gini twice by different routes and
 comparing them.
 
-> **Assistant:** Worth computing the Gini two ways — the sorted-index formula
+> **AI:** Worth computing the Gini two ways — the sorted-index formula
 > and trapezoidal integration under the Lorenz curve. They are algebraically
 > equivalent, so any disagreement is an implementation bug rather than a
 > modeling choice.
@@ -76,8 +76,8 @@ implementation, both as mutual checks.
 
 What I rejected: the regression as a headline result.
 
-Where the assistant went wrong: it optimized for a quotable number. The proposal
+Where the AI went wrong: it optimized for a quotable number. The proposal
 was not a coding error: the code is correct and is still in the repository. It
-was a judgment error about what 19 observations can support, and the assistant
+was a judgment error about what 19 observations can support, and the AI
 gave no indication that the question was even open. The decision to bin rather
 than regress is mine, and it makes a weaker claim, honestly.
