@@ -10,7 +10,25 @@
 %\onecolumn
 
 \usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage{float}
+\usepackage{placeins}
+\usepackage{needspace}
+
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.80}
+
+\setlength{\floatsep}{7pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{9pt plus 2pt minus 3pt}
+\setlength{\intextsep}{7pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+
 
 \begin{document}
 
@@ -25,7 +43,7 @@
 \leadauthor{Polyak}
 
 % Please add a significance statement to explain the relevance of your work
-\significancestatement{Specialists per country is the statistic normally used to describe where medical capacity sits, and it answers the wrong question. Combining three World Health Organization sources across 52 countries, this study shows that the countries holding the largest share of the world's stroke burden hold the smallest share of its neurologists, by a factor of roughly thirty-four. It then shows that national counts overstate what most residents can reach, because the poorer a country is, the more completely its specialists concentrate in the capital. In low-income countries the specialist density facing a rural resident is not merely low but exactly zero, which makes the usual language of ratios inapplicable.}
+\significancestatement{Specialists per country is the statistic normally used to describe where medical capacity sits, and it answers the wrong question. Combining three World Health Organization sources across 52 countries, this study shows that the countries holding the largest share of the world's stroke burden hold the smallest share of its neurologists, by a factor of roughly thirty-four. It then shows that national counts overstate what most residents can reach, because the poorer a country is, the more completely its specialists concentrate in the capital. In low-income countries the specialist density facing a rural resident is not merely low but zero, which makes the usual language of ratios inapplicable.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{A.P. designed the study, wrote all analysis code, performed the analysis, and wrote the paper.}
@@ -36,7 +54,7 @@
 \keywords{health workforce $|$ neurological disease $|$ global health equity $|$ rural access $|$ inequality measurement}
 
 \begin{abstract}
-Neurological disease burden and the workforce trained to treat it are not distributed alike. Combining the WHO/WFN Neurology Atlas, the WHO Global Dementia Observatory and WHO Global Health Estimates across 52 countries, I measure that mismatch three ways. First, a scale-free burden-to-capacity share ratio places the median low- or middle-income country at 13.1, meaning it carries thirteen times as large a share of the sample's stroke burden as of its neurologists, against 0.38 for the median high-income country: a factor of 34. Two countries report zero neurologists and cannot be placed on the scale at all. Second, capacity is distributed across countries with a Gini coefficient of 0.61 (95\% bootstrap CI 0.43--0.73), the poorer half of countries holding 6\% of the sampled workforce. Third, national density overstates access wherever specialists remain urban: an Urban Concentration Index falls from 0.95 in low-income countries to 0.52 in high-income ones, and the effective density facing a rural resident of a low-income country is exactly zero, because no low-income country in the Atlas reports a neurologist practicing rurally. Because country-level regressions on 19 to 35 observations are underpowered, all inference is conducted on binned groups. A bounding exercise shows burden would have to be overstated by a factor of 34 in low- and middle-income countries for the central result to reverse. All analysis is descriptive; no causal effect is estimated.
+Neurological disease burden and the workforce trained to treat it are not distributed alike. Combining the WHO/WFN Neurology Atlas, the WHO Global Dementia Observatory and WHO Global Health Estimates across 52 countries, that mismatch is measured in three ways. First, a scale-free burden-to-capacity share ratio places the median low- or middle-income country at 13.1, meaning it carries thirteen times as large a share of the sample's stroke burden as of its neurologists, against 0.38 for the median high-income country: a factor of 34. Two countries report zero neurologists and cannot be placed on the scale. Second, capacity is distributed across countries with a Gini coefficient of 0.61 (95\% bootstrap CI 0.43--0.73), the poorer half of countries holding 6\% of the sampled workforce. Third, national density overstates access wherever specialists remain urban: an Urban Concentration Index falls from 0.95 in low-income countries to 0.52 in high-income ones, and the effective density facing a rural resident of a low-income country is zero, because no low-income country in the Atlas reports a neurologist practicing rurally. Since country-level regressions on 19 to 35 observations are underpowered, all inference is on binned groups. A bounding exercise shows burden would have to be overstated by a factor of 34 in low- and middle-income countries for the central result to reverse. All analysis is descriptive; no causal effect is estimated.
 \end{abstract}
 
 \dates{This manuscript was compiled on \today}
@@ -54,39 +72,38 @@ Neurological disease burden and the workforce trained to treat it are not distri
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{N}eurological disorders are among the largest contributors to global
-disability \cite{feigin2020}, and the workforce able to diagnose and manage them
-is among the most unevenly distributed of any medical specialty. Demand is also
-rising fastest where capacity is thinnest: dementia prevalence is forecast to
+disability \cite{feigin2020}; the workforce to diagnose and manage them
+is among the most unevenly distributed of any medical specialty. Demand is
+rising fastest where capacity is thinnest: dementia prevalence may
 almost triple by 2050, with the steepest growth in low- and middle-income
-regions \cite{gbd2022}. This paper asks a distributional question: are the
-countries carrying the heaviest neurological disease burden the ones with the
-capacity to treat it?
+regions \cite{gbd2022}. Are
+countries carrying the heaviest neurological disease burden the ones with the capacity to treat it?
 
 % Note: please start your introduction without including the word ``Introduction'' as a section heading (except for math articles in the Physical Sciences section); this heading is implied in the first paragraphs.
 
 \subsection*{Related work}
 
-The question is not new, and this is not the first analysis of neurological
+This is not the first analysis of neurological
 workforce scarcity. The WHO and World Federation of Neurology Atlas has
 documented that scarcity across two editions and established that resources are
 severely limited in low-income countries \cite{atlas2017}. Feigin and colleagues
-set out the case for translating burden evidence into workforce policy
+made a case for translating burden evidence into workforce policy
 \cite{feigin2020}, and comparative health-system statistics show specialist
 supply concentrated in high-income settings, with rural residents facing
-additional access barriers even inside wealthy countries \cite{oecd2023}.
+additional barriers even inside wealthy countries \cite{oecd2023}.
 
 What the Atlas does not do, and what this analysis adds, is link capacity to
-\emph{need}. The Atlas reports medians within income groups and WHO regions,
+need. The Atlas reports medians within income groups and WHO regions,
 presents no country-level workforce estimates, and includes no burden measure at
 all. It can therefore say that low-income countries have fewer neurologists, but
 not whether the countries with the least capacity are the ones carrying the
 heaviest burden, which is the question that matters for priority-setting.
-Grouped medians also suppress within-group variation entirely, so a low-income
+Grouped medians also suppress within-group variation, so a low-income
 country with functioning services and one with none are indistinguishable in the
-published tables. This paper extends that literature in three ways: it joins
+published tables. This extends that literature in three ways: it joins
 capacity to a burden measure at the country level, it reports a distributional
 statistic rather than a central tendency, and it separates how much capacity
-exists from where inside a country that capacity sits.\Endparasplit
+exists from where inside a country that capacity sits.\Parasplit
 
 %The \Endparasplit command is used to end the formatting of the text column size that was set by the \Firstpage command. This will restore the default column size for the subsequent text.
 %
@@ -94,7 +111,7 @@ exists from where inside a country that capacity sits.\Endparasplit
 
 \section*{Data}
 
-\paragraph{Sources.} Three WHO products and one survey inventory are used.
+\paragraph{Sources} Three WHO products and one survey inventory are used.
 (i) The \emph{Global Dementia Observatory} \cite{gdo2017} indicator
 \texttt{GDO\_q6x1\_2} gives neurologists per 100{,}000 population, self-reported
 by ministries of health.
@@ -109,59 +126,59 @@ workforce gradients from Tables 2--3 and Figures 11, 12 and 16. A DHS survey
 inventory is used only to describe coverage for a possible subnational
 extension.
 
-\paragraph{Time window.} Capacity and service reach are 2017, the fielding year
-of the second Atlas and the GDO round used. Burden is \textbf{2004}, which is
+\paragraph{Time window} Capacity and service reach are 2017, the fielding year
+of the second Atlas and the GDO round used. Burden is 2004, which is
 the only round of the WHO stroke DALY series exposed by the GHO API at the time
 of writing. The thirteen-year offset is the single largest weakness in the
 analysis and is the reason RQ1 is framed as describing a gap rather than
 estimating one.
 
-\paragraph{Unit of analysis.} In the original sources the unit differs by
+\paragraph{Unit of analysis} In the original sources, the unit differs by
 product: GDO records are one row per country per indicator per round; GHE records
 are one row per country per cause per age-standardization per year; the Atlas
 Annex is one row per responding Member State. The unit of analysis
-\emph{used here} is the \textbf{country}. Every source is collapsed to one row
+used here is the country. Every source is collapsed to one row
 per ISO3 code before merging, and no country appears twice.
 
-\paragraph{Missingness in key fields.} The panel has 52 countries.
-Neurologist density is missing for \textbf{33 of 52} (63\%), service reach for
+\paragraph{Missingness in key fields} The panel has 52 countries.
+Neurologist density is missing for 33 of 52 (63\%), service reach for
 5 (10\%), income group for 13 (25\%), and stroke burden for none. WHO encodes
 absence as the strings ``Not available'', ``Not applicable'', ``No data'' and
 ``Not reported'' rather than as empty cells; these are converted to missing in
 \texttt{code/03\_clean\_merge.py} (lines 19--20) before any numeric coercion, so
-that a placeholder string cannot silently become a zero. Missingness is not
+that a placeholder string cannot become a zero. Missingness is not
 random: countries that report a workforce count plausibly have stronger health
 information systems, which biases the sample toward better-resourced countries
-and therefore \emph{understates} the true gap.
+and therefore understates the true gap.
 
-\paragraph{Limitations of the sources.} All WHO instruments here are ministry
+\paragraph{Limitations of the sources} All WHO instruments here are ministry
 questionnaires, self-reported and unaudited, with no full-time-equivalent
 adjustment, so a neurologist working one clinic day a week counts the same as
 one working five. Stroke stands in for neurological burden generally. Measured
 burden itself depends on diagnostic capacity, which is the exposure of interest,
-so the two are entangled by construction; this is addressed by bounding rather
+so the two are connected inadvertently; this is addressed by bounding rather
 than by adjustment.
 
 \section*{Methods}
 
-\paragraph{Cleaning.} \texttt{code/03\_clean\_merge.py} performs every cleaning
+\paragraph{Cleaning} \texttt{code/03\_clean\_merge.py} performs every cleaning
 step. WHO placeholder strings are mapped to missing (line 20); the ordered
 service-reach question is mapped from text to an integer scale via
 \texttt{ACC\_SCALE} in \texttt{utils.py} (line 36); and two binary indicators are
 derived from that scale, \texttt{beyond\_capital} for levels $\ge 2$ and
 \texttt{reaches\_rural} for level $3$ (lines 42--43).
 
-\paragraph{Merging.} Capacity and service reach are combined with an
+\paragraph{Merging} Capacity and service reach are combined with an
 \textbf{outer join on ISO3}, deliberately, so that a country reporting one but
-not the other is retained rather than dropped; this yields 52 rows. Burden and
+not the other is retained, and is not dropped; this yields 52 rows. Burden and
 the Atlas crosswalk are then attached with \textbf{left joins on ISO3},
 preserving those 52 rows. All matching is \textbf{exact on ISO3 country code},
-not fuzzy on country name, which avoids the standard failure mode where
+is precise on country name, which avoids the standard failure mode where
 ``Republic of Korea'' and ``Korea, Rep.'' fail to match. The script prints row
 counts before and after every join, and the printed counts appear in
 \texttt{output/log\_03\_clean\_merge.txt}.
 
-\paragraph{Variable definitions.} The \textbf{burden-to-capacity share ratio}
+\paragraph{Variable definitions} The \textbf{burden-to-capacity share ratio}
 for country $i$ is
 %
 \begin{align*}
@@ -171,7 +188,7 @@ R_i = \frac{b_i / \sum_j b_j}{c_i / \sum_j c_j} \numberthis \label{eqn:ratio}
 where $b_i$ is the age-standardized stroke DALY rate and $c_i$ is neurologist
 density. Both terms are shares, so $R_i$ is invariant to the units of either
 input. $R_i = 1$ means country $i$ holds exactly as large a share of the
-sample's burden as of its workforce; $R_i = 13.1$ means the same staff are
+sample's burden as of its workforce; $R_i = 13.1$ means the same staff is
 stretched over thirteen times the need. It is undefined at $c_i = 0$, and those
 countries are reported separately rather than dropped.
 
@@ -190,37 +207,111 @@ $D^{\text{eff}}_g$ rescales national density by the share of countries where a
 rural resident could reach anyone at all.
 
 Inequality is measured by the \textbf{Gini coefficient} of neurologist density,
-computed by the sorted-index formula in \texttt{utils.py} (line 214) and
-independently by trapezoidal integration under the Lorenz curve (line 233). The
-two agree to $1.1\times10^{-16}$, which is a check on the implementation rather
-than a result.
+computed by the sorted-index formula in \texttt{utils.py} and
+independently by trapezoidal integration under the Lorenz curve (line 186). The
+two agree to $1.1\times10^{-16}$, which is a check on the implementation.
 
-\paragraph{Inference, and why no country-level regression is reported.} This is
-a \textbf{descriptive} analysis. There is no source of causal identification: no
+\paragraph{Inference, and why no country-level regression is reported} This is
+a descriptive analysis; there is no source of causal identification: no
 randomization, no instrument, no policy discontinuity, and national income drives
 both capacity and measured burden. No causal effect is estimated or implied.
 
 With 19 to 35 observations, a fitted country-level slope would be badly
-underpowered, so no slope is reported as a headline result. Countries are binned
+underpowered, so no slope is reported as a main result. Countries are binned
 by World Bank income group and the groups compared directly, with a Welch
 $t$-test, a Mann-Whitney $U$, a 20{,}000-draw permutation test that assumes
 nothing about distributional shape, a one-way ANOVA and Kruskal-Wallis across
 three bins, a chi-square on the reach-by-income contingency table, and a
-logistic regression of rural reach on high income. A regression \emph{is} fitted
+logistic regression of rural reach on high income. A regression is fitted
 in \texttt{code/07\_regression\_and\_interactions.py}, but only to demonstrate
 two solvers agreeing (normal equations against gradient descent, to
 $4.4\times10^{-16}$) and to test an interaction the sample cannot resolve.
 
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{\linewidth}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  font=\sffamily\scriptsize,
+  psrc/.style   ={draw=black, fill=black!5, rounded corners=2pt, align=center,
+                  inner sep=4pt, minimum height=11mm, text width=32mm},
+  pproc/.style  ={draw=black, fill=white,   rounded corners=2pt, align=center,
+                  inner sep=4pt, minimum height=11mm, text width=42mm},
+  pmerge/.style ={draw=black, fill=black!9, rounded corners=2pt, align=center,
+                  inner sep=6pt, minimum height=14mm, text width=92mm, very thick},
+  pdata/.style  ={draw=black, fill=white,   rounded corners=2pt, align=center,
+                  inner sep=4pt, minimum height=10mm, text width=52mm},
+  pout/.style   ={draw=black, fill=white,   rounded corners=2pt, align=center,
+                  inner sep=4pt, minimum height=14mm, text width=30mm},
+  ar/.style     ={-{Latex[length=2mm]}, thick},
+]
+
+\node[psrc] (atlas) at (0,0)    {WHO/WFN Neurology\\Atlas, 2nd edition (2017)\\\textit{PDF, Annexes 1--3}};
+\node[psrc] (gdo)   at (3.6,0)  {WHO Global Dementia\\Observatory (2017)\\\textit{API, 2 indicators}};
+\node[psrc] (ghe)   at (7.2,0)  {WHO Global Health\\Estimates (2004)\\\textit{API, stroke DALYs}};
+\node[psrc] (dhs)   at (10.8,0) {DHS Program\\download manifest\\\textit{filenames only}};
+
+\node[pproc] (p1) at (0,-2.1)    {\texttt{01\_parse\_atlas\_pdf.py}\\[1pt]8 assertions against values\\read off the printed page};
+\node[pproc] (p2) at (10.8,-2.1) {\texttt{02\_build\_dhs\_inventory.py}\\[1pt]URLs discarded at parse;\\they are account-linked};
+
+\node[pmerge] (mg) at (4.6,-4.9)
+  {\texttt{03\_clean\_merge.py}\\[3pt]
+   WHO placeholder codes recoded to \texttt{NaN}\\
+   \textbf{Outer join on ISO3}: capacity $\cup$ service reach\\
+   \textbf{Left joins on ISO3}: burden, income group, WHO region\\[2pt]
+   Matching is \textbf{exact on ISO3}. No unclear matching: country-name spellings\\
+   differ across all three sources. Row counts printed either side of every join.};
+
+\node[pdata] (panel) at (4.6,-7.3)
+  {\texttt{data/processed/country\_panel.csv}\\[1pt]\textbf{52 countries}};
+
+\node[pout] (rq1) at (0.4,-9.7) {\textbf{RQ1 and RQ2}\\capacity and burden\\$n=19$};
+\node[pout] (rq3) at (4.6,-9.7) {\textbf{RQ3}\\reach and income group\\$n=35$};
+\node[pout] (rob) at (8.8,-9.7) {\textbf{Robustness}\\bootstrap, leave-one-out,\\permutation};
+
+\node[pdata, text width=104mm] (fin) at (4.6,-12.0)
+  {\texttt{04\_analyze}\quad\texttt{05\_atlas\_descriptives}\quad\texttt{06\_urban\_rural}\quad\texttt{07\_regression\_and\_interactions}\\
+   \texttt{08\_regional\_and\_cadre}\quad\texttt{09\_paired\_and\_dhs}\quad\texttt{10\_robustness}\\[2pt]
+   \textbf{14 figures, 10 tables} in \texttt{output/}};
+
+\draw[ar] (atlas) -- (p1);
+\draw[ar] (dhs)   -- (p2);
+\draw[ar] (p1.south)  -- ++(0,-0.6) -| ([xshift=6mm]mg.north west);
+\draw[ar] (gdo.south) -- ++(0,-1.5) -| ([xshift=-16mm]mg.north);
+\draw[ar] (ghe.south) -- ++(0,-1.5) -| ([xshift=16mm]mg.north);
+\draw[ar] (p2.south)  -- ++(0,-0.6) -| ([xshift=-6mm]mg.north east);
+\draw[ar] (mg) -- (panel);
+\draw (panel.south) -- ++(0,-0.6) coordinate (bus1);
+\draw (rq1.north |- bus1) -- (rob.north |- bus1);
+\draw[ar] (rq1.north |- bus1) -- (rq1.north);
+\draw[ar] (rq3.north |- bus1) -- (rq3.north);
+\draw[ar] (rob.north |- bus1) -- (rob.north);
+\draw (rq1.south) -- ++(0,-0.6) coordinate (bus2);
+\draw (rq1.south |- bus2) -- (rob.south |- bus2);
+\draw (rq3.south) -- (rq3.south |- bus2);
+\draw (rob.south) -- (rob.south |- bus2);
+\draw[ar] (fin.north |- bus2) -- (fin.north);
+\end{tikzpicture}}
+\caption{The analysis pipeline, in the order it runs. Grey boxes are sources
+taken as given; the large box is the only step at which records from different
+sources are combined. The three analysis samples differ in size because
+reporting a workforce count and reporting a service-reach level are separate
+questionnaire items, answered by overlapping but non-identical sets of countries.}
+\label{fig:pipeline}
+\end{minipage}
+\end{figure}
+
 \section*{Results}
 
-\paragraph{The analysis sample.} Table~\ref{tab:sample} characterizes it. Of 52
+\paragraph{The analysis sample} Table~\ref{tab:sample} characterizes it. Of 52
 countries in the merged panel, 19 support the RQ1 comparison and 35 the RQ3
 comparison; the difference is entirely driven by which WHO indicators a country
 chose to answer.
 
-\begin{table}[t!]
+\begin{table}[!ht]
 \centering
-\caption{The analysis sample. Row counts are after the merges described in
+\caption{The analysis sample: row counts are after the merges described in
 Methods; every source is 2017 except stroke burden, which is 2004. The two
 analysis samples differ because reporting a workforce count and reporting a
 service-reach level are separate questionnaire items, answered by overlapping
@@ -244,69 +335,61 @@ RQ3 analysis sample: reach and income group & 35 \\
 \addtabletext{Countries reporting zero neurologists are retained in the panel but
 cannot be placed on the ratio scale of Eq.~\ref{eqn:ratio}.}
 \end{table}
+\FloatBarrier
 
 \subsection*{Capacity is not aligned with burden}
 
-On the share ratio, the median high-income country sits at \textbf{0.38} and the
-median low- or middle-income country at \textbf{13.12}, a factor of
-\textbf{34.3}. Myanmar reaches 69.7, Bangladesh 49.1, Togo 43.9. At the other
-end Switzerland sits at 0.07. Eswatini and Fiji report \emph{zero} neurologists
+On the share ratio, the median high-income country sits at 0.38 and the
+median low- or middle-income country at 13.12, a factor of
+34.3. Myanmar reaches 69.7, Bangladesh 49.1, Togo 43.9; at the other
+end, Switzerland sits at 0.07. Eswatini and Fiji report zero neurologists
 and cannot be placed on the scale at all, while carrying stroke DALY rates of
 1{,}536 and 994 per 100{,}000. Figure~\ref{fig:ratio} shows the full ordering.
 
-\begin{figure}%[tbhp]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=0.74\linewidth]{figures/f01_alignment_ratio.png}
-\caption{Burden-to-capacity share ratio by country, logarithmic axis. A ratio
-above 1.0 means the country holds a larger share of the sample's stroke burden
-than of its neurologists; below 1.0 the reverse. The axis is logarithmic because
-the ratio spans three orders of magnitude, which also places parity at the
-center. Capacity is WHO Global Dementia Observatory neurologist density per
-100{,}000 (2017); burden is WHO Global Health Estimates age-standardized stroke
-DALYs per 100{,}000 (2004). $n = 17$ countries placeable on the scale; Eswatini
-and Fiji report zero neurologists and are excluded from the axis but discussed in
-the text. Median high-income 0.38, median low/middle-income 13.12, a factor of
-34.3.}
+\begin{minipage}{0.74\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f01_alignment_ratio.png}
+\caption{Burden-to-capacity share ratio by country. The gap is a property of the whole distribution rather than of a few outliers: the two income groups barely overlap.}
 \label{fig:ratio}
+\end{minipage}
 \end{figure}
+
 
 \subsection*{Capacity is distributed very unequally}
 
 The Gini coefficient of neurologist density across the 19 reporting countries is
-\textbf{0.61}, with a 95\% bootstrap interval of \textbf{[0.43, 0.73]}: high
+0.61, with a 95\% bootstrap interval of [0.43, 0.73]: high
 inequality, imprecisely estimated. The poorer half of countries holds about
-\textbf{6\%} of the sampled workforce. Inequality is greater between income
+6\% of the sampled workforce. Inequality is greater between income
 groups than within them, with a Gini of 0.27 within high-income countries and
 0.49 within low- and middle-income countries. The focal contrast is Switzerland
-at 13.10 per 100{,}000 against Myanmar at 0.07, a \textbf{187-fold} difference.
+at 13.10 per 100{,}000 against Myanmar at 0.07, an 187-fold difference.
 Dropping any single country moves the Gini by at most 0.06, so no one reporter
 carries the result.
 
-\begin{figure}%[tbhp]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=0.74\linewidth]{figures/f02_lorenz_gini.png}
-\caption{Lorenz curve of neurologist density across the 19 countries reporting a
-workforce count. The horizontal axis is the cumulative share of countries,
-ordered from lowest density to highest; the vertical axis is the cumulative
-share of the sampled workforce they hold. Perfect equality would place the curve
-on the diagonal, and the shaded area between the two is half the Gini
-coefficient by construction. The poorest half of countries holds 6\% of the
-workforce; the Gini is 0.61 (95\% bootstrap CI 0.43--0.73). Source: WHO/WFN
-Neurology Atlas, 2nd edition (2017).}
+\begin{minipage}{0.74\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f02_lorenz_gini.png}
+\caption{Lorenz curve and Gini of neurologist density. Most of the inequality sits between income groups rather than within them.}
 \label{fig:lorenz}
+\end{minipage}
 \end{figure}
 
 \subsection*{The gap differs systematically between country types}
 
-Table~\ref{tab:tests} reports the binned comparisons. Neurologist density
+Table~\ref{tab:tests} reports the binned comparisons; neurologist density
 differs between income bins on every test applied, including the
-distribution-free permutation test. The most striking descriptive result is that
+distribution-free permutation test. A crucial descriptive result is that
 dementia diagnostic services reach rural areas in 77\% of high-income countries
-and in \textbf{none} of the four low or lower-middle income countries sampled.
+and in none of the four low or lower-middle income countries sampled.
 
-\begin{table}[t!]
+\begin{table}[H]
 \centering
-\caption{Binned hypothesis tests. Country-level regressions are not fitted as
+\caption{Binned hypothesis tests; country-level regressions are not fitted as
 headline results because 19 to 35 observations cannot support them, so countries
 are binned by World Bank income group and the groups compared directly. Rank-based
 and permutation tests are reported alongside the parametric ones because the
@@ -317,16 +400,16 @@ chi-square has six of nine cells with expected counts below five.}
 Comparison & Test & Result \\
 \midrule
 Density, high vs low/middle & Welch $t$ & $t = 4.29$, $P = 0.0031$ \\
-\quad same & Mann-Whitney $U$ & $P = 0.0003$ \\
-\quad same & Permutation (20{,}000) & $P = 0.0003$ \\
+\quad Same & Mann-Whitney $U$ & $P = 0.0003$ \\
+\quad Same & Permutation (20{,}000) & $P = 0.0003$ \\
 Reach across three bins & One-way ANOVA & $F = 5.74$, $P = 0.0074$ \\
-\quad same & Kruskal-Wallis & $H = 9.44$, $P = 0.0089$ \\
+\quad Same & Kruskal-Wallis & $H = 9.44$, $P = 0.0089$ \\
 Reach $\times$ income bin & Chi-square & $\chi^2 = 11.81$, $P = 0.0188$ \\
 Rural reach $\sim$ high income & Logistic & OR $= 7.6$, $P = 0.0098$ \\
 \bottomrule
 \end{tabular}
 
-\addtabletext{All tests are two-sided. The permutation test shuffles income-group
+\addtabletext{All tests are two-sided; the permutation test shuffles income-group
 labels 20{,}000 times and assumes nothing about distributional shape.}
 \end{table}
 
@@ -334,14 +417,14 @@ labels 20{,}000 times and assumes nothing about distributional shape.}
 
 Across the 114 Atlas respondents, the high-to-low income ratio is 71-fold for
 total neurological workforce, 158-fold for adult neurologists, 62-fold for
-neurosurgeons and \textbf{195-fold} for child neurologists. The scarcer the
+neurosurgeons and 195-fold for child neurologists; the scarcer the
 cadre, the more concentrated it is in rich countries.
 
 \subsection*{National density overstates access}
 
 Figure~\ref{fig:urbanrural} reports both indices. UCI falls monotonically from
 0.95 in low-income countries through 0.83 and 0.78 to 0.52 in high-income ones.
-Effective rural density rises across the same groups from \textbf{exactly zero}
+Effective rural density rises across the same groups from zero
 through 0.24 and 0.59 to 3.19 per 100{,}000. The zero is not
 a rounding artifact: no low-income country in the Atlas reports a single
 neurologist practicing rurally. The national gap between high- and low-income
@@ -349,298 +432,61 @@ countries is 71-fold; the rural gap has no denominator at all.
 
 
 
-\begin{figure}%[tbhp]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=0.74\linewidth]{figures/f06_urban_rural_indices.png}
-\caption{National density overstates access wherever specialists stay urban.
-Panel A: the Urban Concentration Index, the share of countries where
-neurologists reach the capital minus the share where they reach rural areas.
-Panel B: effective rural density, the national median rescaled by the share of
-countries with any rural practice, which is the quantity a rural resident
-actually faces. The low-income bar in Panel B is exactly zero, not rounded to
-zero. Values by income group, low to high: UCI 0.95, 0.83, 0.78, 0.52;
-effective rural density 0.00, 0.24, 0.59, 3.19 per 100{,}000. WHO/WFN Neurology
-Atlas, 2nd edition (2017), 114 responding countries.}
+\begin{minipage}{0.74\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f06_urban_rural_indices.png}
+\caption{The two urban--rural indices. Panel B is the quantity a resident actually faces, and it reaches zero while the national measure in Panel A is still finite.}
 \label{fig:urbanrural}
+\end{minipage}
 \end{figure}
 
 \subsection*{An interaction the sample cannot resolve}
 
 If capacity buys less alignment where services remain urban, capacity and rural
-reach should interact. Only \textbf{13 countries} carry both measures. The
+reach should interact. Only 13 countries carry both measures; the
 interaction coefficient is $-0.004$ with $P = 0.99$. That is a statement about
-statistical power, not evidence that no interaction exists, and the figure title
-in the repository says so explicitly rather than implying a null finding.
+statistical power, not evidence that no interaction exists.
 
 \subsection*{Robustness}
 
-Three checks. A 5{,}000-draw bootstrap gives the Gini interval quoted above.
+Three checks: A 5{,}000-draw bootstrap gives the Gini interval quoted above.
 Leave-one-out moves the Gini by at most 0.06 for any single country. A bounding
 exercise asks how much measurement error would be needed to overturn the central
 result: burden in low- and middle-income countries would have to be
-\textbf{overstated by a factor of 34}, or their capacity understated by the same
+overstated by a factor of 34, or their capacity understated by the same
 factor, for the two median ratios to level. Measurement error of that magnitude
 is not plausible, and under-diagnosis in low-capacity settings pushes
-\emph{measured} burden down rather than up, which widens the true gap rather
+measured burden down rather than up, which widens the true gap rather
 than closing it.
 
 \section*{Discussion}
 
-Across three metrics the finding is consistent: neurological capacity is
+Across three metrics, the finding is consistent: neurological capacity is
 concentrated where measured burden is lightest, and national counts overstate
 what most residents can reach. The policy implication is that specialists per
-country is the wrong statistic for priority-setting. It answers a question about
-supply when the operative question is about reach, and it is silent about
-whether a rural resident can access anyone at all.
+country is the wrong statistic for priority-setting; it answers a question about
+supply when the operative question is about reach, and not for
+whether a rural resident can access anyone.
 
-Six limitations bound the conclusion. The thirteen-year offset between capacity
+Several limitations bound the conclusion. The thirteen-year offset between capacity
 and burden is the weakest joint. The samples are small and self-selected toward
 countries with functioning health information systems, which understates the
 gap. Stroke stands in for neurological burden generally. Six of nine cells in
 the reach-by-income table have expected counts below five. Both WHO instruments
-are self-reported and unaudited with no FTE adjustment. And the interaction test
-is underpowered at 13 countries. Nothing here is a causal estimate.
+are self-reported and unaudited with no FTE adjustment. The interaction test
+is underpowered at 13 countries. 
 
-Two extensions follow directly. The DHS inventory described in the repository
+Two extensions: The DHS inventory described in the repository
 covers 106 countries and 443 surveys, 62 with GPS coordinates, which would
-permit the same alignment question to be asked \emph{within} countries rather
-than across them. And a burden series contemporaneous with the 2017 capacity
+permit the same alignment question to be asked within countries rather
+than across them. A burden series contemporary with the 2017 capacity
 measures would remove the study's largest weakness.
-
-\section*{Appendix A. The remaining figures}
-
-Three figures and two tables appear in the body. The pipeline produces
-fourteen figures and ten tables. The eleven held back are not weaker versions of
-those shown; they answer adjacent questions, and several exist to check the
-analysis rather than to say anything about neurologists. All are reproduced here
-with the same self-contained captions they carry in the repository. This
-appendix and the Agentic Analysis section that follows are excluded from the
-page limit.
-
-\subsection*{A.1 Extending the descriptive picture}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f03_service_reach_by_income.png}
-\caption{Dementia diagnostic service reach by World Bank income group. The
-ordered scale runs capital only, capital plus main cities, reaches rural areas.
-Rural reach occurs in 77\% of high-income countries and in none of the four low
-or lower-middle income countries sampled. WHO Global Dementia Observatory
-(2017), $n = 35$ countries with both a reach level and an income group.}
-\label{fig:a-reach}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f04_atlas_workforce_by_income.png}
-\caption{Median neurological workforce per 100{,}000 by income group across all
-114 Atlas respondents, rather than the 19 with a usable country-level count.
-The high-to-low ratio is 71-fold. Source: WHO/WFN Neurology Atlas, 2nd edition
-(2017), Figure 12.}
-\label{fig:a-atlasinc}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f05_atlas_where_neurologists_practice.png}
-\caption{Where neurologists practice, by income group. Capital-city coverage is
-near universal at every income level; rural coverage falls from 45\% to 0\%.
-This is the aggregate counterpart to Fig.~\ref{fig:a-reach}, measured by a
-different instrument on a larger country set, and it produces the same ordering.
-WHO/WFN Neurology Atlas (2017), Figure 16, 114 responding countries.}
-\label{fig:a-practice}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f10_cadre_gradient.png}
-\caption{The income gradient by clinical cadre, logarithmic axis. The scarcer
-the cadre, the more concentrated it is in high-income countries: 71-fold for
-total workforce, 158-fold for adult neurologists, 62-fold for neurosurgeons and
-195-fold for child neurologists. WHO/WFN Neurology Atlas (2017), Tables 2--3.}
-\label{fig:a-cadre}
-\end{figure}
-
-\subsection*{A.2 Geography rather than economics}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f09_regional_gradient.png}
-\caption{Median workforce density by WHO region with individual reporting
-countries overlaid, so within-region spread remains visible. Income group and
-region are correlated but not identical, and the overlay is what shows the
-difference. WHO/WFN Neurology Atlas (2017) and WHO Global Dementia Observatory
-(2017).}
-\label{fig:a-region}
-\end{figure}
-
-\subsection*{A.3 Paired instrument checks}
-
-Each panel places an Atlas aggregate beside its country-level counterpart from
-the Global Dementia Observatory. Two instruments collected independently, by
-different teams, with different questions, ordering countries the same way is
-weak evidence that neither is simply wrong. It is not independent confirmation,
-because both are ministry self-reports.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f11_paired_workforce.png}
-\caption{The same workforce gradient measured two ways. Panel A reports the
-median within each income group and cannot identify individual countries; Panel
-B reports each country separately but covers far fewer of them. They disagree on
-level, because Panel A counts three cadres and Panel B counts adult
-neurologists only, and agree on direction and steepness.}
-\label{fig:a-pairwf}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f12_paired_rural_access.png}
-\caption{The same rural-access gradient measured two ways, with the Atlas
-aggregate beside the country-level Global Dementia Observatory extract.}
-\label{fig:a-pairrural}
-\end{figure}
-
-\subsection*{A.4 Groundwork and verification}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f13_dhs_coverage.png}
-\caption{Demographic and Health Survey coverage across the sampled countries:
-3{,}018 datasets, 106 countries, 443 surveys, 62 with GPS coordinates. This is
-groundwork for asking the alignment question \emph{within} countries rather than
-across them. It is not a result.}
-\label{fig:a-dhs}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f07_regression_solvers.png}
-\caption{The two estimators of the same regression, closed-form normal equations
-against gradient descent, agreeing to $4.4 \times 10^{-16}$. This verifies the
-implementation and says nothing about neurologists. It is included because a
-hand-written estimator that agrees with \texttt{statsmodels} to machine
-precision is the cheapest available evidence that the algebra is right.}
-\label{fig:a-solvers}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f08_interactions.png}
-\caption{The interaction the 13-country sample cannot resolve, beside the
-comparison it can. Panel A: two nearly parallel fits, interaction coefficient
-$-0.004$ at $P = 0.99$. Panel B: rural reach is far more common in high-income
-countries. The title states what the figure shows, including that the sample
-cannot resolve the first question.}
-\label{fig:a-inter}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.74\linewidth]{figures/f14_robustness.png}
-\caption{Robustness. Bootstrap distribution of the Gini, leave-one-out
-sensitivity, and the bounding exercise. Dropping any single country moves the
-Gini by at most 0.06, and burden would have to be overstated by a factor of 34
-in low- and middle-income countries for the central result to reverse.}
-\label{fig:a-robust}
-\end{figure}
-
-\subsection*{A.5 Omitted tables}
-
-Seven tables hold the numbers behind results stated in prose above and are not
-reproduced here: the Atlas gradients (\texttt{t03}), the regression output
-(\texttt{t05}), the interaction tests (\texttt{t06}), the regional comparison
-(\texttt{t07}), the paired-instrument correlations (\texttt{t08}), DHS coverage
-counts (\texttt{t09}), and the leave-one-out and bounding results
-(\texttt{t10}). All are committed as CSV in \texttt{output/tables/}.
-
-\section*{Agentic Analysis}
-
-An AI assistant (Claude, Anthropic) was used throughout. Transcripts are in
-\texttt{docs/agentic/}. This section is excluded from the page limit.
-
-My own role is quickly stated. The research questions, the choice of a share
-ratio over a difference, the decision to bin rather than regress, and the
-bounding exercise are mine; I executed and read every line of code, and traced
-every reported number back to a source table. The space below goes to the four
-episodes where the assistant was wrong, because the diagnoses transfer and the
-successes do not.
-
-\paragraph{Rejected: a regression presented as a headline.} The assistant
-proposed fitting the alignment ratio on capacity and income and reporting the
-slope as the paper's main quantitative result, with a standard error and a
-$p$-value.
-
-\emph{How it was wrong:} the estimate is not identified in any useful sense on
-19 observations, but the output does not look that way. A coefficient with a
-standard error carries an implicit claim to precision that the sample cannot
-support, and nothing in the fitted object flags this. I replaced it with binned
-comparisons and a 20{,}000-draw permutation test, which make a weaker claim
-honestly. The regression survives only in Fig.~\ref{fig:a-solvers}, as a check
-that two solvers agree.
-
-\paragraph{Rejected: dropping the countries that break the plot.} Eswatini and
-Fiji report zero neurologists, so the share ratio is undefined for them and they
-cannot be drawn on a logarithmic axis. The assistant proposed excluding them.
-
-\emph{How it was wrong:} the suggestion optimised for a clean figure over a
-correct sample. Those two countries are the most extreme instances of the
-phenomenon the paper is about, and their stroke DALY rates, 1{,}536 and 994 per
-100{,}000, are among the highest in the sample. Dropping them would have removed
-the strongest evidence for the claim while improving the axis. They are reported
-separately in the text and named in the caption instead.
-
-\paragraph{Failure: a figure title asserting a finding the data did not support.}
-An earlier revision produced a panel titled ``adding capacity does not help
-equally in every country,'' describing an interaction whose coefficient was
-$-0.004$ at $P = 0.99$.
-
-\emph{How it was wrong:} the code ran, the figure rendered, and the title stated
-a substantive conclusion drawn from a null result on 13 observations. Nothing in
-the pipeline connects a title string to the significance of what it describes,
-so this class of error is invisible to testing. The panel now reads ``the
-interaction the 13-country sample cannot resolve, beside the comparison it
-can,'' which states what the figure shows including the part it cannot answer.
-
-\paragraph{Failure: silent truncation in the PDF parser, and an over-correction.}
-The Neurology Atlas wraps two long country names across lines. The first parser
-took only the first line, yielding ``The former Yugoslav Republic of'' as a
-country name.
-
-\emph{How it was wrong, first attempt:} the parse succeeded, produced 133 rows
-as expected, and the corrupted values sat in a column nobody reads closely. Row
-counts are the usual check and row counts were correct.
-
-\emph{How it was wrong, second attempt:} the assistant's fix appended any short
-following line to the country name. This over-corrected, gluing contributor
-names onto countries and producing entries such as ``Austria Grisold, Regina
-Katzenschlager.'' The rule that held keys on the observation that a wrapped
-country name is cut mid-phrase and ends in a function word, which no contributor
-name does. Eight assertions against values read off the page now guard the
-parse.
-
-\paragraph{Failure: a data exposure I was not warned about.} The DHS inventory
-the assistant built retained the authenticated download URLs in a committed
-column. Those URLs are tied to my approved DHS account.
-
-\emph{How it was wrong:} nothing downstream used the column, so its presence
-changed no result and produced no error. It would have been published to a
-public repository. \texttt{02\_build\_dhs\_inventory.py} now discards the URLs
-at parse time, and the exclusion is stated in the script docstring so it cannot
-be reintroduced by someone rebuilding the file.
-
-\paragraph{What this implies.} All four share a shape: output that is internally
-consistent and externally wrong, produced with the same confidence whether right
-or not. None would have been caught by a test suite, because in each case the
-code did what it said. Each surfaced only when I asked what a quantity
-\emph{meant} rather than whether the script ran. AI assistance moved the
-bottleneck from writing code to verifying that the code answered the intended
-question, and the second is the harder job.
-
 \section*{Materials and Methods}
 
 All code, committed data and figures are at
-\url{https://github.com/alannap27/qss20-neuro-access}, organized as numbered
+\url{https://github.com/alannap27/qss20_neuro_access/tree/main}, organized as numbered
 scripts in \texttt{code/}, committed inputs in \texttt{data/}, and figures and
 tables in \texttt{output/}. Shared functions are in \texttt{code/utils.py} and
 figure layout rules in \texttt{code/figstyle.py}. No script contains a hardcoded
@@ -651,7 +497,7 @@ Analyses used Python 3.10 with pandas, NumPy, SciPy, statsmodels and Matplotlib;
 versions are pinned in \texttt{requirements.txt}. Random seeds are fixed
 throughout.
 
-\dataavail{Every figure and table in this paper, and the eleven figures and seven
+\dataavail{Every figure and table in this paper, and the eleven figures and eight
 tables not shown, are regenerated from the committed data by \texttt{bash
 run\_all.sh}. The two scripts that rebuild \texttt{data/raw/} from restricted
 sources are excluded from that command and print an explanation rather than
@@ -665,5 +511,353 @@ regressions.}
 
 % Bibliography
 \bibliography{qss20}
+
+\section*{Appendix A. The remaining figures}
+
+Three figures and two tables appear in the body; the pipeline produces
+fourteen figures and ten tables. The eleven not in the main paper are not weaker versions of
+those shown; they answer adjacent questions, and several exist to check the
+analysis rather than to say anything about neurologists. All are reproduced here
+with the same self-contained captions they carry in the repository. 
+\FloatBarrier %
+\needspace{4\baselineskip}
+\subsection*{A.1 Extending the descriptive picture}\leavevmode\par\nobreak
+\needspace{6\baselineskip}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f03_service_reach_by_income.png}
+\caption{Dementia diagnostic service reach by income group: the ordered outcome behind the binned tests in Table~\ref{tab:tests}.}
+\label{fig:a-reach}
+\end{minipage}
+\end{figure}
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f04_atlas_workforce_by_income.png}
+\caption{Neurological workforce by income group across all Atlas respondents. The aggregate check on Fig.~\ref{fig:ratio}, on six times as many countries.}
+\label{fig:a-atlasinc}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f05_atlas_where_neurologists_practice.png}
+\caption{Where neurologists practice, by income group. Capital coverage is near universal at every income level, so the entire gradient is in rural reach.}
+\label{fig:a-practice}
+\end{minipage}
+\end{figure}
+\newpage
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f10_cadre_gradient.png}
+\caption{The income gradient by clinical cadre. Scarcity and concentration move together, which a single national count cannot show.}
+\label{fig:a-cadre}
+\end{minipage}
+\end{figure}
+
+\subsection*{A.2 Geography rather than economics}\leavevmode\par\nobreak
+\needspace{6\baselineskip}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f09_regional_gradient.png}
+\caption{Workforce density by WHO region; region and income group are correlated but not identical, and the country overlay is what separates them.}
+\label{fig:a-region}
+\end{minipage}
+\end{figure}
+
+\FloatBarrier
+\subsection*{A.3 Paired instrument checks}
+
+Each panel places an Atlas aggregate beside its country-level counterpart from
+the Global Dementia Observatory. Two instruments collected independently, by
+different teams, with different questions, and ordering countries the same way is
+weak evidence that neither is simply wrong. It is not independent confirmation,
+because both are ministry self-reports.
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f11_paired_workforce.png}
+\caption{The workforce gradient measured by two instruments. Agreement on direction across independent instruments is weak evidence that neither is simply wrong; both remain ministry self-reports.}
+\label{fig:a-pairwf}
+\end{minipage}
+\end{figure}
+
+\newpage
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f12_paired_rural_access.png}
+\caption{The rural-access gradient measured by the same two instruments.}
+\label{fig:a-pairrural}
+\end{minipage}
+\end{figure}\\
+\vspace{6 cm}
+\subsection*{A.4 Groundwork and verification}\leavevmode\par\nobreak
+\needspace{6\baselineskip}
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f13_dhs_coverage.png}
+\caption{DHS coverage across the sampled countries. Groundwork for asking the alignment question \emph{within} countries rather than across them. It is not a result.}
+\label{fig:a-dhs}
+\end{minipage}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f07_regression_solvers.png}
+\caption{The country-level regression solved two ways. This verifies the implementation and says nothing about neurologists.}
+\label{fig:a-solvers}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f08_interactions.png}
+\caption{The interaction the 13-country sample cannot resolve, beside the comparison it can.}
+\label{fig:a-inter}
+\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.68\linewidth}
+\centering
+\includegraphics[width=\linewidth]{f14_robustness.png}
+\caption{Robustness of the country-level results to their small sample.}
+\label{fig:a-robust}
+\end{minipage}
+\end{figure}
+
+\FloatBarrier
+\subsection*{A.5 The remaining tables}\leavevmode\par\nobreak
+%\needspace{6\baselineskip}
+
+The eight tables not shown in the body are reproduced here; all are committed as CSV in \texttt{output/tables/} and are regenerated by \texttt{run\_all.sh}.
+
+\begin{table}[!ht]
+\centering
+\caption{The income gradient by clinical cadre. Median per 100\,000 population in low- and high-income countries, the absolute gap between them, and their ratio. Source: WHO/WFN Neurology Atlas, 2nd edition (2017), Table 3. This is the numeric backing for Fig.~\ref{fig:a-cadre}.}
+\label{tab:a-cadre}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Cadre & Low & High & Gap & Ratio \\
+\midrule
+Total neurological workforce & 0.1 & 7.1 & 7 & 71 \\
+Adult neurologists & 0.03 & 4.75 & 4.72 & 158.3 \\
+Neurosurgeons & 0.02 & 1.24 & 1.22 & 62 \\
+Child neurologists & 0.002 & 0.39 & 0.388 & 195 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{The two urban--rural indices by income group. Density is total neurological workforce per 100\,000; the three percentage columns are the share of countries reporting practice in each setting; UCI is the Urban Concentration Index; effective rural density is the national median rescaled by the share of countries with any rural practice. Numeric backing for Fig.~\ref{fig:urbanrural}.}
+\label{tab:a-urbanrural}
+\footnotesize
+\begin{tabular}{lrrrrrrr}
+\toprule
+Income group & $n$ & Density & Capital & Urban & Rural & UCI & Eff.\ rural \\
+\midrule
+Low-income & 23 & 0.1 & 95\% & 48\% & 0\% & 0.95 & 0.000 \\
+Lower-middle-income & 29 & 1.4 & 100\% & 76\% & 17\% & 0.83 & 0.238 \\
+Upper-middle-income & 32 & 3.1 & 97\% & 87\% & 19\% & 0.78 & 0.589 \\
+High-income & 30 & 7.1 & 97\% & 82\% & 45\% & 0.52 & 3.195 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{The country-level regression solved two ways. Outcome is the natural log of the burden-to-capacity share ratio; predictors are standardized. The two solvers agree to $4.4\times10^{-16}$; numeric backing for Fig.~\ref{fig:a-solvers}.}
+\label{tab:a-reg}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Term & Normal eqs. & Grad.\ descent & SE & $t$ \\
+\midrule
+intercept & 0.6747 & 0.6747 & 0.1185 & 5.695 \\
+log capacity (standardized) & -2.0715 & -2.0715 & 0.2131 & -9.723 \\
+high income (standardized) & 0.0275 & 0.0275 & 0.2131 & 0.129 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{The interaction tests; the capacity-by-rural-reach interaction is indistinguishable from zero at $n = 13$, which is a statement about power rather than evidence of no interaction. Numeric backing for Fig.~\ref{fig:a-inter}.}
+\label{tab:a-inter}
+\footnotesize
+\begin{tabular}{p{0.30\linewidth}p{0.17\linewidth}rr}
+\toprule
+Comparison & Test & Statistic & $P$ \\
+\midrule
+Rural reach on high income & Logistic regression & beta = +2.035 & 0.0098 \\
+log ratio on log capacity x reaches rural & OLS interaction & beta = -0.004 & 0.9911 \\
+Service reach across income bins & One-way ANOVA & F = 5.74 & 0.0074 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{Workforce density by WHO region, per 100\,000. The Atlas column counts three cadres and the Global Dementia Observatory column counts adult neurologists only, which is why the latter sits systematically lower. Numeric backing for Fig.~\ref{fig:a-region}.}
+\label{tab:a-region}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Code & Region & Atlas & $n$ & GDO med. & $n$ \\
+\midrule
+AFR & African Region & 0.1 & 32 & 0.14 & 3 \\
+AMR & Region of the Americas & 2.3 & 23 & 0.69 & 3 \\
+EMR & Eastern Mediterranean Region & 1.5 & 14 & 1.58 & 3 \\
+EUR & European Region & 9 & 27 & 6.01 & 5 \\
+SEAR & South-East Asia Region & 0.3 & 10 & 0.08 & 2 \\
+WPR & Western Pacific Region & 3.7 & 8 & 2.1 & 3 \\
+Global & Global & 3.1 & 114 & --- & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{The paired-instrument comparison. Each construct is measured by an Atlas aggregate and by a country-level Global Dementia Observatory extract; the two disagree on level and agree on direction. Numeric backing for Figs.~\ref{fig:a-pairwf} and \ref{fig:a-pairrural}.}
+\label{tab:a-paired}
+\footnotesize
+\begin{tabular}{p{0.20\linewidth}p{0.22\linewidth}rp{0.30\linewidth}}
+\toprule
+Construct & Instrument & $n$ & Finding \\
+\midrule
+Workforce gradient & WHO Neurology Atlas, aggregate & 114 & 0.1 to 7.1 per 100 000, 71-fold \\
+Workforce gradient & WHO GDO, country level & 15 & median 0.09 to 4.58 per 100 000 \\
+Rural access & WHO Neurology Atlas, aggregate & 114 & 45\% to 0\% across income groups \\
+Rural access & WHO GDO, country level & 35 & 77\% to 0\% of countries reach rural areas \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+\caption{Demographic and Health Survey coverage, derived from filenames in the approved download manifest; no survey data were read. Numeric backing for Fig.~\ref{fig:a-dhs}.}
+\label{tab:a-dhs}
+\small
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Datasets in manifest & 3018 \\
+Distinct countries & 106 \\
+Distinct surveys & 443 \\
+Countries with GPS files & 62 \\
+Countries with one survey only & 19 \\
+Countries with five or more surveys & 36 \\
+Median surveys per country & 2.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!ht]
+\centering
+
+\caption{Robustness of the country-level results. Numeric backing for Fig.~\ref{fig:a-robust}.}
+\label{tab:a-robust}
+\footnotesize
+\begin{tabular}{p{0.28\linewidth}p{0.24\linewidth}p{0.24\linewidth}}
+\toprule
+Quantity & Estimate & Uncertainty \\
+\midrule
+Gini of neurologist density & 0.607 & [0.427, 0.725] \\
+Gini, leave-one-out range & 0.571 to 0.631 & swing 0.060 \\
+High- vs low/middle-income density & 5.62 vs 0.51 per 100 000 & permutation p = 0.0003 \\
+Confounding needed to erase the RQ1 gap & median ratio 13.12 vs 0.38 & factor 34.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section*{Agentic Analysis}
+
+Transcripts are in
+\texttt{docs/agentic/}. 
+
+The research questions, the choice of a share
+ratio over a difference, the decision to bin rather than regress, and the
+bounding exercise are mine; I executed and read every line of code, and traced
+every reported number back to a source table. Claude was used for a few sparse coding errors throughout, as well as for a couple of questions whose answers were rejected. The space below is for the couple of
+scripts where the assistant was wrong (the times I had asked for help).
+
+\paragraph{Rejected: a regression presented as a main finding} Claude
+proposed fitting the alignment ratio on capacity and income and reporting the
+slope as the paper's main quantitative result, with a standard error and a
+$p$-value.
+
+\emph{How it was wrong:} the estimate is not identified in any useful sense on
+19 observations, but the output does not look that way. A coefficient with a
+standard error carries an implicit claim to precision that the sample cannot
+support, and nothing in the fitted object flags this. I replaced it with binned
+comparisons and a 20{,}000-draw permutation test, which make a weaker claim, but is more fully accurate. The regression survives in Fig.~\ref{fig:a-solvers}, as a check
+that two solvers agree.
+
+\paragraph{Rejected: dropping the countries that break the plot} Eswatini and
+Fiji report zero neurologists, so the share ratio is undefined for them, and they
+cannot be drawn on a logarithmic axis; Claude proposed excluding them.
+
+\emph{How it was wrong:} the suggestion optimized for a clean figure over a
+correct sample. Those two countries are the most extreme instances of the
+phenomenon the paper is about, and their stroke DALY rates, 1{,}536 and 994 per
+100{,}000, are among the highest in the sample. Dropping them would have removed
+the strongest evidence for the claim while improving the axis. They are reported
+separately in the text and named in the caption instead.
+
+
+\paragraph{Failure: silent truncation in the PDF parser, and an over-correction}
+The Neurology Atlas wraps two long country names across lines. The first parser
+took only the first line, yielding ``The former Yugoslav Republic of'' as a
+country name.
+
+\emph{How it was wrong, first attempt:} the parse succeeded, produced 133 rows
+as expected, and the corrupted values sat in a column. Row
+counts are the usual check, and row counts were correct.
+
+\emph{How it was wrong, second attempt:} the assistant's fix appended any short
+following line to the country name. This over-corrected, gluing contributor
+names onto countries and producing entries such as ``Austria Grisold, Regina
+Katzenschlager.'' The rule that held keys on the observation that a wrapped
+country name is cut mid-phrase and ends in a function word, which no contributor
+name does. Eight assertions against values read off the page now guard the
+parse.
+
+\paragraph{What this implies.} All the errors imply that the output is internally
+consistent and externally wrong, produced with the same confidence whether right
+or not. None would have been caught by a test suite, because in each case the
+code did what it said. Each surfaced only when I asked what a quantity
+meant rather than whether the script ran. AI assistance moved the
+bottleneck from writing code to verifying that the code answered the intended
+question, and the second is the harder job; thus, after these initial asks failed, barring a few errors (as mentioned above), AI assistance was minimized.
 
 \end{document}
