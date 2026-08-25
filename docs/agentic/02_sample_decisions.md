@@ -16,7 +16,7 @@ them, and a logarithmic axis cannot show a zero.
 
 Hwne I was building Figure 1, I hit this and asked for a fix:
 
-> **Assistant:** Two countries have zero capacity, so the ratio is undefined and
+> **AI:** Two countries have zero capacity, so the ratio is undefined and
 > they can't be placed on a log axis. The simplest is to filter them out before
 > plotting — `panel = panel[panel[CAPACITY] > 0]` — which leaves 17 countries on
 > the figure.
@@ -66,7 +66,7 @@ cannot divide by zero.
 What I rejected: excluding them from the analysis, which is a different thing
 that the proposed one-line filter quietly conflated with the first.
 
-Where the assistant went wrong: it treated an undefined value as a plotting
+Where the AI went wrong: it treated an undefined value as a plotting
 nuisance rather than as a finding. The suggestion optimized for a clean figure
 over a correct sample: the filter was offered as housekeeping, not as a
 decision about what the paper claims.
