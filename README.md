@@ -189,20 +189,20 @@ reader cites; **Site** is what the website calls the same image.
 
 | | Figure | Script | Paper | Site |
 |---|---|---|---|---|
-| f01 | Burden-to-capacity share ratio by country | 04 | Fig. 1 | Figure 1 |
-| f02 | Lorenz curve and Gini of neurologist density | 04 | Fig. 2 | Figure 2 |
-| f03 | Dementia service reach by income group | 04 | Fig. 4 | gallery |
-| f04 | Atlas workforce density by income group | 05 | Fig. 5 | gallery |
-| f05 | Where neurologists practice | 05 | Fig. 6 | gallery |
-| f06 | Urban concentration and effective rural density | 06 | Fig. 3 | Figure 3 |
-| f07 | Normal equations against gradient descent | 07 | Fig. 12 | gallery |
-| f08 | Capacity by reach, and reach by income | 07 | Fig. 13 | Figure 4 |
-| f09 | Regional gradient in capacity | 08 | Fig. 8 | gallery |
-| f10 | Gradient by clinical cadre | 08 | Fig. 7 | gallery |
-| f11 | Paired workforce comparison | 09 | Fig. 9 | gallery |
-| f12 | Paired rural access comparison | 09 | Fig. 10 | gallery |
-| f13 | DHS survey coverage | 09 | Fig. 11 | gallery |
-| f14 | Bounding exercise and leave-one-out | 10 | Fig. 14 | gallery |
+| f01 | Burden-to-capacity share ratio by country | 04 | Fig. 2 | Figure 1 |
+| f02 | Lorenz curve and Gini of neurologist density | 04 | Fig. 3 | Figure 2 |
+| f03 | Dementia service reach by income group | 04 | Fig. 5 | gallery |
+| f04 | Atlas workforce density by income group | 05 | Fig. 6 | gallery |
+| f05 | Where neurologists practice | 05 | Fig. 7 | gallery |
+| f06 | Urban concentration and effective rural density | 06 | Fig. 4 | Figure 3 |
+| f07 | Normal equations against gradient descent | 07 | Fig. 13 | gallery |
+| f08 | Capacity by reach, and reach by income | 07 | Fig. 14 | Figure 4 |
+| f09 | Regional gradient in capacity | 08 | Fig. 9 | gallery |
+| f10 | Gradient by clinical cadre | 08 | Fig. 8 | gallery |
+| f11 | Paired workforce comparison | 09 | Fig. 10 | gallery |
+| f12 | Paired rural access comparison | 09 | Fig. 11 | gallery |
+| f13 | DHS survey coverage | 09 | Fig. 12 | gallery |
+| f14 | Bounding exercise and leave-one-out | 10 | Fig. 15 | gallery |
 
 The columns disagree because each document orders figures for its own reader:
 the file index is production order, the paper puts body figures first and holds
