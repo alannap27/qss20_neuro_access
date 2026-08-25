@@ -19,7 +19,7 @@ Edited excerpt from the session log, abridged as described in the README.
 > similar blue and orange colors. Leave gaps for figures in all of the tabs
 > that make it easy to fill in by hand. No grey text, only black or other colors.
 
-The assistant produced the scaffold and a first full draft: `App.jsx` holding
+The AI produced the scaffold and a first full draft: `App.jsx` holding
 the page content, `Blocks.jsx` holding the reusable components (`Section`,
 `Figure`, `Gallery`, `Table`, `Stats`, `Callout`), `styles.css`, and the Vite
 configuration.
