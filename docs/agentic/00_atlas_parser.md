@@ -14,10 +14,10 @@ output and code blocks are abridged, with cuts marked `[...]`.
 > **Alanna:** The atlas is a PDF; Annex 1 has the country list with WHO region
 > and income group. Can u parse it into a CSV
 
-The assistant wrote a parser over `pdfplumber`, extracting Annex 1 by matching
+The AI wrote a parser over `pdfplumber`, extracting Annex 1 by matching
 each line against the WHO region names and the four World Bank income labels.
 
-> **Assistant:** Annex 1 parsed. 133 rows, which matches the count of
+> **AI:** Annex 1 parsed. 133 rows, which matches the count of
 > participating countries stated on the annex header. Writing
 > `data/raw/atlas_countries.csv`.
 
@@ -52,9 +52,9 @@ I found it reading the output CSV, not from any error.
 
 ## The first fix, which over-corrected
 
-The assistant's repair appended any short line that followed to the country name.
+The AI's repair appended any short line that followed to the country name.
 
-> **Assistant:** Fixed: the parser now joins a continuation line when the next
+> **AI:** Fixed: the parser now joins a continuation line when the next
 > line is short enough not to be a new record.
 
 Diagnostic output comparing the old parse against the new one:
@@ -112,7 +112,7 @@ What I accepted: the first version, on a row count.
 
 What I rejected: the first fix, once I saw what it did to Austria.
 
-Where the assistant went wrong: twice, and in the same way both times. The parse
+Where the AI went wrong: twice, and in the same way both times. The parse
 succeeded, produced the expected number of rows, and put wrong values in a
 column. Neither failure would have been caught by a test that the code runs,
 because the code did run. Both were caught by looking at what the values meant.
