@@ -110,6 +110,8 @@ measured burden down, not up, which widens the true gap.
 two OLS solvers, and the permutation test. `code/figstyle.py` holds the figure
 layout rules.
 
+There are also Jupyter Notebook equivalents of all of the below. 
+
 | Script | Takes in | Does | Outputs |
 |---|---|---|---|
 | [`01_parse_atlas_pdf.py`](code/01_parse_atlas_pdf.py) | the Atlas PDF (not committed, need access) | parses Annex 1, Tables 2–3 and Figs 11/12/16, asserting each against a value off the page | `data/raw/atlas_*.csv` |
